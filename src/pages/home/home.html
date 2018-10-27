@@ -1,14 +1,36 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="light">
     <ion-title>
-      Ionic Blank
+      <img src="../../assets/imgs/mesh.png" class="app-logo"/>
     </ion-title>
+    <ion-buttons end>
+      <button (click)="addListItem()" ion-button icon-only color="royal">
+        <ion-icon ios="ios-add" md="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list inset reorder="true" (ionItemReorder)="reorderItems($event)">
+    <ng-container *ngFor="let item of items">
+      <ion-item-sliding #itemContainer>
+        <ion-item-options side="left">
+          <button (click)="removeItem(item)" ion-button color="danger">
+            <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+          </button>
+        </ion-item-options>
+        <ion-item>
+          {{ item }}
+        </ion-item>
+        <ion-item-options side="right">
+          <button (click)="editItem(item)" ion-button color="warning">
+            Edit
+            <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ng-container>
+  </ion-list>
 </ion-content>
