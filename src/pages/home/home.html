@@ -4,7 +4,7 @@
       <img src="../../assets/imgs/mesh.png" class="app-logo"/>
     </ion-title>
     <ion-buttons end>
-      <button *ngIf="staticItems.length > 1" (click)="showSearchBar = !showSearchBar"  ion-button icon-only color="royal">
+      <button *ngIf="staticItems.length >= 10" (click)="showSearchBar = !showSearchBar"  ion-button icon-only color="royal">
         <ion-icon ios="ios-search" md="md-search" color="primary"></ion-icon>
       </button>
       <button (click)="addListItem()" ion-button icon-only color="royal">
