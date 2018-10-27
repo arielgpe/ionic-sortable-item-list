@@ -4,15 +4,32 @@
       <img src="../../assets/imgs/mesh.png" class="app-logo"/>
     </ion-title>
     <ion-buttons end>
+      <button *ngIf="staticItems.length > 1" (click)="showSearchBar = !showSearchBar"  ion-button icon-only color="royal">
+        <ion-icon ios="ios-search" md="md-search" color="primary"></ion-icon>
+      </button>
       <button (click)="addListItem()" ion-button icon-only color="royal">
-        <ion-icon ios="ios-add" md="md-add"></ion-icon>
+        <ion-icon ios="ios-add" md="md-add" color="primary"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-searchbar
+    [animated]="true"
+    *ngIf="showSearchBar"
+    [(ngModel)]="searchTerm"
+    [showCancelButton]="true"
+    (ionInput)="onSearch($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list inset reorder="true" (ionItemReorder)="reorderItems($event)">
+  <ng-template #isListEmpty>
+    <div text-center>
+      There is nothing here! you can start by pressing the
+      <ion-icon ios="ios-add" md="md-add"></ion-icon> icon and add a new Item!
+    </div>
+  </ng-template>
+  <ion-list *ngIf="staticItems.length > 0; else isListEmpty" class="item-list" inset reorder="true" (ionItemReorder)="reorderItems($event)">
     <ng-container *ngFor="let item of items">
       <ion-item-sliding #itemContainer>
         <ion-item-options side="left">
@@ -34,3 +51,11 @@
     </ng-container>
   </ion-list>
 </ion-content>
+
+<ion-footer text-center *ngIf="staticItems.length > 0">
+  <ion-toolbar>
+    <ion-title>
+      <button ion-button color="primary" (click)="clearAll()">Clear All Data</button>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

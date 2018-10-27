@@ -10,7 +10,7 @@
     <ion-title>{{addOrEdit}} Item</ion-title>
     <ion-buttons end>
       <button (click)="closeModal()" ion-button icon-only color="royal">
-        <ion-icon ios="ios-close" md="md-close"></ion-icon>
+        <ion-icon ios="ios-close" md="md-close" color="primary"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -21,7 +21,7 @@
 <ion-content padding>
   <ion-label stacked>Description</ion-label>
   <ion-textarea [(ngModel)]="description" placeholder="Enter a description" maxlength="25"></ion-textarea>
-  <button [disabled]="!description || description == ''"  (click)="addDescription()" ion-button block>
+  <button [disabled]="!description || description.trim() == ''"  (click)="addDescription()" ion-button block>
      Save
   </button>
 </ion-content>
