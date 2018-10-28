@@ -33,4 +33,4 @@ You can also see a Clear All button on the bottom, this button show itself once 
 7- You can grab any element from the list and reordering,
  the reorder will be saved on real time on the database.
 
-![Edit](doc/6.png)
+![Edit](doc/7.png)
